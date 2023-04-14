@@ -4,7 +4,6 @@
  */
 //% color=#404040 weight=0 icon="\uf013" block="Control"
 //% groups=["Device control", "Debugging", "Device & session information"]
-//% advanced=true
 namespace blockControl {
     /*
     Device & session information
@@ -190,7 +189,7 @@ namespace blockControl {
     }
 
     /**
-     * Run function and log runtime to console (microseconds)
+     * Run function and log runtime to console (μs)
      * @param func Function to execute
      */
     //% block="benchmark runtime"
@@ -202,4 +201,21 @@ namespace blockControl {
         console.log(runtime);
     }
 
+    // Conversion from ms to microseconds
+    export enum TimeFormat {
+        Milliseconds = 1,
+        Microseconds = 1000
+    }
+
+    /**
+     * Return time since device started (ms / μs)
+     * @returns Time since device started in milliseconds or microseconds
+     */
+    //% block="time since device started in $format"
+    //% blockId="blockControl_time_since_start"
+    //% group="Device & session information"
+    //% weight=100
+    export function timeSinceStart(format: TimeFormat): number {
+        return control.millis() * format;
+    }
 }
