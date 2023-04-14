@@ -4,17 +4,9 @@
  */
 //% color=#404040 weight=0 icon="\uf013" block="Control"
 //% groups=["Device control", "Debugging", "Device & session information"]
+//% advanced=true
 namespace blockControl {
     /*
-        
-    Debug
-        control.dmesgValue
-        control.gc
-        control.heapDump
-        control.setDebugFlags
-        control.heapSnapshot
-        control.benchmark
-
     Device & session information
         control.millis
         control.micros
@@ -108,7 +100,7 @@ namespace blockControl {
     }
 
     /**
-     * Create a new zero-initiated buffer.
+     * Create a new zero-initiated buffer
      * @param size Number of bytes in the buffer
      * @returns A Buffer object
      */
@@ -122,12 +114,13 @@ namespace blockControl {
     }
 
     /**
-     * Create a new buffer from UTF8-encoded string.
+     * Create a new buffer from UTF8-encoded string
      * @param str UTF8 string
      * @returns A Buffer object
      */
-    //% block="create buffer from $string"
+    //% block="create buffer from $str"
     //% blockId="blockControl_create_buffer_UTF8"
+    //$ str.defl="string"
     //% group="Device control"
     //% weight=40
     export function createBufferFromUTF8(str: string): Buffer {
@@ -147,4 +140,66 @@ namespace blockControl {
     export function dmesgValue(value: any): void {
         control.dmesgValue(value);
     }
+
+    /**
+     * Force garbage collection and dump
+     * basic information about heap
+     */
+    //% block="force GC and dump heap info"
+    //% blockId="blockControl_gc"
+    //% group="Debugging"
+    //% weight=90
+    export function gc(): void {
+        control.gc();
+    }
+
+    /**
+     * Force garbage collection and wait
+     * for debugger to fully dump heap
+     */
+    //% block="force GC and fully dump heap"
+    //% blockId="blockControl_heap_dump"
+    //% group="Debugging"
+    //% weight=80
+    export function heapDump(): void {
+        control.heapDump();
+    }
+
+    /**
+     * Set flags when connecting an external debugger
+     * @param flags Flags to set
+     */
+    //% block="set debugger flags $flags"
+    //% blockId="blockControl_set_debug_flags"
+    //% group="Debugging"
+    //% weight=70
+    export function setDebugFlags(flags: number): void {
+        control.setDebugFlags(flags);
+    }
+
+    /**
+     * Record a heap snapshot for debugging
+     * memory leaks
+     */
+    //% block="record a heap snapshot"
+    //% blockId="blockControl_heap_snapshot"
+    //% group="Debugging"
+    //% weight=60
+    export function heapSnapshot(): void {
+        control.heapSnapshot();
+    }
+
+    /**
+     * Run function and log runtime to console (microseconds)
+     * @param func Function to execute
+     */
+    //% block="benchmark runtime"
+    //% blockId="blockControl_benchmark"
+    //% group="Debugging"
+    //% weight=50
+    export function benchmark(func: () => void): void {
+        let runtime = control.benchmark(func);
+        console.log(runtime);
+    }
+
 }
