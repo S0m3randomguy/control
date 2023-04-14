@@ -126,7 +126,7 @@ namespace blockControl {
      * @param str UTF8 string
      * @returns A Buffer object
      */
-    //% block="run code in parallel"
+    //% block="create buffer from $string"
     //% blockId="blockControl_create_buffer_UTF8"
     //% group="Device control"
     //% weight=40
