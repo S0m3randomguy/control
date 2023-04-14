@@ -5,19 +5,6 @@
 //% color=#404040 weight=0 icon="\uf013" block="Control"
 //% groups=["Device control", "Debugging", "Device & session information"]
 namespace blockControl {
-    /*
-    Device & session information
-        control.millis
-        control.micros
-        control.deviceSerialNumber
-        control.deviceLongSerialNumber
-        control.deviceDalVersion
-        control.profilingEnabled
-        control.allocateEventSource
-        control.programHash
-        control.programName
-        control.ramSize
-    */
 
     //% block="assert $condition or exit with code $code"
     //% blockId="blockControl_assert"
@@ -217,5 +204,90 @@ namespace blockControl {
     //% weight=100
     export function timeSinceStart(format: TimeFormat): number {
         return control.millis() * format;
+    }
+
+    /**
+     * Derives a unique and consistent serial number from internal data
+     * @returns Serial number of the device
+     */
+    //% block="device serial number"
+    //% blockId="blockControl_device_serial_number"
+    //% group="Device & session information"
+    //% weight=90
+    export function deviceSerialNumber(): number {
+        return control.deviceSerialNumber();
+    }
+
+    /**
+     * Derives a unique and consistent 64-bit serial number from internal data
+     * @returns Serial number of the device
+     */
+    //% block="long device serial number"
+    //% blockId="blockControl_device_long_serial_number"
+    //% group="Device & session information"
+    //% weight=80
+    export function deviceLongSerialNumber(): Buffer {
+        return control.deviceLongSerialNumber();
+    }
+
+    /**
+     * Determine current system software version ('sim' for simulator)
+     * @retuns A device version string
+     */
+    //% block="system software version"
+    //% blockId="blockControl_device_dal_version"
+    //% group="Device & session information"
+    //% weight=70
+    export function deviceDalVersion(): string {
+        return control.deviceDalVersion();
+    }
+
+    /**
+     * Check if profiling is enabled in current build
+     * @retuns Boolean, true if profiling is enabled
+     */
+    //% block="is profiling enabled"
+    //% blockId="blockControl_device_profiling enabled"
+    //% group="Device & session information"
+    //% weight=60
+    export function profilingEnabled(): boolean {
+        return control.profilingEnabled();
+    }
+
+    /**
+     * Get the current program hash
+     * @returns Hash of the program running
+     */
+    //% block="current program hash"
+    //% blockId="blockControl_program_hash"
+    //% group="Device & session information"
+    //% weight=50
+    export function programHash(): number {
+        return control.programHash();
+    }
+
+    /**
+     * Get the current program name
+     * @returns Name of the program running
+     */
+    //% block="current program name"
+    //% blockId="blockControl_program_name"
+    //% group="Device & session information"
+    //% weight=40
+    export function programName(): string {
+        return control.programName();
+    }
+
+    /**
+     * Get the estimated ram size (b)
+     * Simulator is restricted to 32M
+     * @returns Ram size in bytes
+     */
+    //% block="device ram size"
+    //% blockId="blockControl_ram_size"
+    //% group="Device & session information"
+    //% weight=30
+    export function ramSize(): number {
+        return control.ramSize();
     }
 }
