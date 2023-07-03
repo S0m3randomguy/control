@@ -290,4 +290,17 @@ namespace blockControl {
     export function ramSize(): number {
         return control.ramSize();
     }
+
+    /**
+     * Check if game is running in simulator
+     * Equivalent to checking `deviceDalVersion == 'sim'`
+     * @returns True if running in simulator
+     */
+    //% block="running in simulator"
+    //% blockId="blockControl_in_simulator"
+    //% group="Device & session information"
+    //% weight=20
+    export function inSimulator(): boolean {
+        return control.deviceDalVersion() == "sim";
+    }
 }
