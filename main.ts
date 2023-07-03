@@ -35,7 +35,7 @@ namespace blockControl {
      * @param src Micro:Bit component ID. Visit hyperlink for more information
      * (https://github.com/microsoft/pxt-microbit/blob/master/libs/core/dal.d.ts)
      * @param value Component specific code
-     * @flags Flags to enable
+     * @param flags Flags to enable
      */
     //% block="run code on event with id $src, code $value ||, flags $flags"
     //% blockId="blockControl_on_event"
