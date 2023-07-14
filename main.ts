@@ -279,7 +279,7 @@ namespace blockControl {
     }
 
     /**
-     * Get the estimated ram size (b)
+     * Get the estimated ram size (B)
      * Simulator is restricted to 32M
      * @returns Ram size in bytes
      */
